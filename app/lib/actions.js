@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { Department, User } from './models';
 import { connectToDb } from './utils';
+import { signIn } from "../auth";
 import bcrypt from "bcrypt";
 
 export const addUser = async (formData) => {
@@ -140,4 +141,15 @@ export const deleteDepartment = async (formData) => {
     revalidatePath('/dashboard/departments');
 };
 
+export const authenticate = async (formData) => {
+
+    const { email, password } = Object.fromEntries(formData)
+    console.log(email, password)
+    try {
+        await signIn("credentials", {email, password})
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
 
