@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+}
+
+.menu {
+    flex:1;
+    background-color: var(--bgSoft);
+    padding: 20px;
+    min-height: 100vh;
+    opacity: 0.8;
+}
+
+.content {
+    flex: 4;
+    padding: 20px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.main{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+
+.cards{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+}
+
+.side{
+    flex: 1;
+}
+
+.container {
+    background-color: #111721;
+    background-image: radial-gradient(#2a4671 1px, #111721 1px);
+    background-size: 70px 70px;
+    animation: animateBackground 10s linear infinite;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -70px 70px;
+    }
+}
+
+.content {
+    opacity: 0.8;
+}

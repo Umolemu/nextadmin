@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #111721;
+    background-image: radial-gradient(#60a5fa 2px, #111721 2px);
+    background-size: 70px 70px;
+
+    animation: animateBackground 15s linear infinite;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 70px 70px;
+    }
+}
+
+
+.form {
+    background-color: var(--bgSoft);
+    padding: 50px;
+    border-radius: 10px;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    opacity: 0.8;
+    transition: background-color 2s ease, color 2s ease;
+}
+
+.form button {
+    padding: 30px;
+    background-color: #1d4ed8;
+    color: var(--text);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form button:hover {
+    background-color: #1e3a8a;
+    color: var(--text);
+}
+
+.form input {
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bg);
+    color: var(--text);
+    width: 100%;
+    opacity: 1;
+    
+}
+
+.form input:focus {
+    border: none;
+    outline: none;
+}
+
+
