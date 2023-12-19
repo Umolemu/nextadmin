@@ -1,9 +1,10 @@
 import styles from "../../../ui/dashboard/users/addUser/addUser.module.css";
+import { addUser } from '../../../lib/actions'
 
 const AddUserPage = () => {
   return (
     <div className={styles.container}>
-      <form action="" className={styles.form}>
+      <form action={addUser} className={styles.form}>
         
         <input type="text" placeholder="name" name="name" required />
         
@@ -23,24 +24,18 @@ const AddUserPage = () => {
           <option value={false}>
             Is Manager?
           </option>
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
+          <option>Yes</option>
+          <option>No</option>
         </select>
 
         <select name="status" id="status">
-          <option value={true}>
-            Status
-          </option>
-          <option value={true}>Active</option>
+          <option>Active</option>
           <option value={false}>Inactive</option>
         </select>
 
         <select name="isActive" id="isActive">
-          <option value={true}>
-            Manager
-          </option>
-          <option value={true}>Manager 1</option>
-          <option value={false}>Manager 2</option>
+          <option>Manager 1</option>
+          <option>Manager 2</option>
         </select>
 
         <button type="submit">Submit</button>

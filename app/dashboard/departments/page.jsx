@@ -3,6 +3,7 @@ import Search from "../../ui/dashboard/search/search"
 import styles from "../../ui/dashboard/departments/departments.module.css"
 import Link from "next/link"
 import { fetchDepartments } from '../../lib/data';
+import { deleteDepartment } from "../../lib/actions";
 
 const DepartmentsPage = async ({searchParams}) => {
   
@@ -40,9 +41,14 @@ const DepartmentsPage = async ({searchParams}) => {
                       View
                     </button>
                   </Link>
-                  <button className={`${styles.button} ${styles.delete}`}>
-                    Delete
-                  </button>
+                  
+                  <form action={deleteDepartment}>
+                    <input type="hidden" name="id" value={department.id}/>
+                    <button className={`${styles.button} ${styles.delete}`}>
+                      Delete
+                    </button>
+                  </form>
+
                 </div>
               </td>
             </tr>

@@ -1,9 +1,9 @@
 import styles from "../../../ui/dashboard/departments/addDepartment/addDepartment.module.css"
-
+import {addDepartment} from '../../../lib/actions'
 const AddDepartmentPage = () => {
   return (
     <div className={styles.container}>
-      <form action=""  className={styles.form}>
+      <form action={addDepartment} className={styles.form}>
         
         <input type="text" placeholder="name" name="name" required/>
         

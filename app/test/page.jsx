@@ -1,13 +1,20 @@
 const Page = () => {
-  handleForm
-  return (
-    <div>
-        <form action={handleForm}>
-            <input type="text"/>
-            <button>Send</button>
-        </form>
-    </div>
-  )
+  
+    const handleForm = async (formData) => {
+        "use server"
+        const username = formData.get("username")
+        console.log(formData);
+        console.log("Hello", username)
+    };
+    
+    return (
+        <div>
+            <form action={handleForm}>
+                <input type="text" name="username"/>
+                <button>Send</button>
+            </form>
+        </div>
+    )
 }
 
 export default Page

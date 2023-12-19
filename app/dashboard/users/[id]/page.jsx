@@ -1,7 +1,13 @@
 import styles from '../../../ui/dashboard/users/singleUser/singleUser.module.css'
 import Image from 'next/image'
+import { fetchUser } from '../../../lib/data'
+import { updateUser } from '../../../lib/actions'
 
-const SingleUserPage = () => {
+const SingleUserPage = async ({ params }) => {
+    
+    const { id } = params
+    const user = await fetchUser(id)
+
   return (
     <div className={styles.container}>
         <div className={styles.infoContainer}>
@@ -9,22 +15,23 @@ const SingleUserPage = () => {
             <div className={styles.imgContainer}>
                 <Image src="/noavatar.png" alt="" fill/>
             </div>
-            John Doe
+            {user.name}
         </div>
         
         <div className={styles.formContainer}>
-            <form action="" className={styles.form}>
+            <form action={updateUser} className={styles.form}>
+                <input type="hidden" name="id" value={user.id}/>
                 <label >Name</label>
-                <input type="text" name="name" placeholder='John'/>
+                <input type="text" name="name" placeholder={user.name}/>
 
                 <label >Surname</label>
-                <input type="surname" name="surname" placeholder='Doe'/>
+                <input type="surname" name="surname" placeholder={user.surname}/>
 
                 <label >Phone</label>
-                <input type="text" name="phone" placeholder='00000000'/>
+                <input type="text" name="phone" placeholder={user.phone}/>
 
                 <label >Email</label>
-                <input type="email" name="email" placeholder='JohnDoe@test.com'/>
+                <input type="email" name="email" placeholder={user.email}/>
 
                 <label >Password</label>
                 <input type="password" name="password"/>

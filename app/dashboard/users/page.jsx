@@ -3,6 +3,7 @@ import Search from "../../ui/dashboard/search/search";
 import styles from "../../ui/dashboard/users/users.module.css";
 import Link from "next/link";
 import { fetchUsers } from '../../lib/data';
+import { deleteUser } from "../../lib/actions";
 
 const UsersPage = async ( {searchParams} ) => {
 
@@ -45,10 +46,13 @@ const UsersPage = async ( {searchParams} ) => {
               <td>{user.status}</td>
               <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/users/test${user.id}`}>
+                  <Link href={`/dashboard/users/${user.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>View</button>
                   </Link>
-                  <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                  <form action={deleteUser}>
+                      <input type="hidden" name="id" value={user.id}/>
+                      <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                  </form>
                 </div>
               </td>
             </tr>
