@@ -36,7 +36,7 @@ const Sidebar = async ()  => {
   const {user} = await auth();
   
   var role;
-
+  console.log(user)
   if(user.isAdmin === "Yes"){
     role = "Administrator"
   } else if (user.isManager==="Yes"){
