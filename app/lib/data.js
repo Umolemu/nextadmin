@@ -53,3 +53,15 @@ export const fetchDepartment = async (id) => {
         throw new Error("Failed to fetch department");
     }
 }
+
+export const fetchManagers = async () => {
+    try {
+        connectToDb();
+        const users = await User.find({});
+        const managers = users.filter(user => user.isManager === 'Yes');
+        return managers;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Failed to fetch user");
+    }
+}

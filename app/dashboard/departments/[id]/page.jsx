@@ -1,7 +1,11 @@
 import styles from '../../../ui/dashboard/departments/singleDepartment/singleDepartment.module.css'
 import {updateDepartment} from '../../../lib/actions'
 import { fetchDepartment } from '../../../lib/data'
+import { fetchManagers } from "../../../lib/data";
+
 const SingleDepartmentPage = async ({params}) => {
+    const managers = await fetchManagers();
+    managers.push({id: 'None', name: "None"});
 
     const { id } = params
     const department = await fetchDepartment(id)
@@ -22,8 +26,9 @@ const SingleDepartmentPage = async ({params}) => {
 
                 <label>Manager</label>
                 <select name="manager" id="manager">
-                    <option>manager 1</option>
-                    <option>manager 2</option>
+                    {managers.map((manager) => (
+                        <option value={manager.id}>{manager.name}</option>
+                    ))}
                 </select>
 
                 <button>Update</button>

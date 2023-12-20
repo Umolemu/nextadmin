@@ -2,9 +2,11 @@ import styles from '../../../ui/dashboard/users/singleUser/singleUser.module.css
 import Image from 'next/image'
 import { fetchUser } from '../../../lib/data'
 import { updateUser } from '../../../lib/actions'
+import { fetchManagers } from "../../../lib/data";
 
 const SingleUserPage = async ({ params }) => {
-    
+    const managers = await fetchManagers();
+    managers.push({id: 'None', name: "None"});
     const { id } = params
     const user = await fetchUser(id)
 
@@ -50,8 +52,9 @@ const SingleUserPage = async ({ params }) => {
 
                 <label>Manager</label>
                 <select name="manager" id="manager">
-                    <option>manager 1</option>
-                    <option>manager 2</option>
+                    {managers.map(manager => (
+                        <option key={manager.id} value={manager.id}>{manager.name}</option>
+                    ))}
                 </select>
 
                 <button>Update</button>

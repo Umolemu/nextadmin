@@ -34,13 +34,23 @@ const menuItems = [
 
 const Sidebar = async ()  => {
   const {user} = await auth();
+  
+  var role;
+  
+  console.log(user);
+  
+  if(user.isAdmin === "Yes"){
+    role = "Administrator"
+  } else if (user.isManager==="Yes"){
+    role = "Manager"
+  } else role = "User"
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <Image className={styles.userImage}src="/noavatar.png" alt="" width="50" height="50"/>
         <div className={styles.userDetail}>
           <span className={styles.username}>{user.name}</span>
-          <span className={styles.userTitle}>Administrator</span>
+          <span className={styles.userTitle}>{role}</span>
         </div>
       </div>
       <ul className={styles.list}>

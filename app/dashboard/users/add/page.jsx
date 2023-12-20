@@ -1,7 +1,10 @@
 import styles from "../../../ui/dashboard/users/addUser/addUser.module.css";
-import { addUser } from '../../../lib/actions'
+import { addUser } from '../../../lib/actions';
+import { fetchManagers } from "../../../lib/data";
 
-const AddUserPage = () => {
+const AddUserPage = async () => {
+  const managers = await fetchManagers();
+  managers.push({id: 'None', name: "None"});
   return (
     <div className={styles.container}>
       <form action={addUser} className={styles.form}>
@@ -21,21 +24,30 @@ const AddUserPage = () => {
         />
 
         <select name="isManager" id="isManager">
-          <option value={false}>
-            Is Manager?
+          <option value="" disabled selected hidden>
+          is Manager ?
           </option>
           <option>Yes</option>
           <option>No</option>
         </select>
 
         <select name="status" id="status">
+          <option value="" disabled selected hidden>
+            Status
+          </option>
           <option>Active</option>
-          <option value={false}>Inactive</option>
+          <option>Inactive</option>
         </select>
 
-        <select name="isActive" id="isActive">
-          <option>Manager 1</option>
-          <option>Manager 2</option>
+        <select name="manager" id="manager">
+          <option value="" disabled selected hidden>
+            Select Manager
+          </option>
+          {managers.map((manager) => (
+            <option key={manager.name} value={manager.name}>
+              {manager.name}
+            </option>
+          ))}
         </select>
 
         <button type="submit">Submit</button>

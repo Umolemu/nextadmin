@@ -9,7 +9,7 @@ import bcrypt from "bcrypt";
 export const addUser = async (formData) => {
     const { name, surname, email, phone, password, isManager, status, manager } 
     = Object.fromEntries(formData)
-
+    
     try {
         connectToDb();
 
@@ -26,6 +26,8 @@ export const addUser = async (formData) => {
             status, 
             manager
         })
+        
+        console.log("new user", newUser);
 
         await newUser.save();
     } catch (error) {
@@ -144,7 +146,6 @@ export const deleteDepartment = async (formData) => {
 export const authenticate = async (formData) => {
 
     const { email, password } = Object.fromEntries(formData)
-    console.log(email, password)
     try {
         await signIn("credentials", {email, password})
     } catch (error) {
