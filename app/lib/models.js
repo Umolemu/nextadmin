@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     manager: {
         type: String,
     },
-    img: {
+    isAdmin: {
         type: String,
     },
 }, {timestamps:true} 

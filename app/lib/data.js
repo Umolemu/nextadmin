@@ -65,3 +65,14 @@ export const fetchManagers = async () => {
         throw new Error("Failed to fetch user");
     }
 }
+
+export const fetchUsersOnce = async () => {
+    try {
+        connectToDb();
+        const users = await User.find({})
+        return users;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Failed to fetch users");
+    }
+}

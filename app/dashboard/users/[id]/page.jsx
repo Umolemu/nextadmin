@@ -5,6 +5,8 @@ import { updateUser } from '../../../lib/actions'
 import { fetchManagers } from "../../../lib/data";
 
 const SingleUserPage = async ({ params }) => {
+    
+    
     const managers = await fetchManagers();
     managers.push({id: 'None', name: "None"});
     const { id } = params
