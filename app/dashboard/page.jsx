@@ -5,11 +5,6 @@ const Dashboard = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.main}>
-        <div className={styles.cards}>
-          <Card />
-          <Card />
-          <Card />
-        </div>
       </div>
     </div>
   )

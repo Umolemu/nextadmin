@@ -5,6 +5,7 @@ import { fetchManagers } from "../../../lib/data";
 const AddDepartmentPage = async () => {
   const managers = await fetchManagers();
   managers.push({id: 'None', name: "None"});
+
   return (
     <div className={styles.container}>
       <form action={addDepartment} className={styles.form}>
@@ -13,7 +14,7 @@ const AddDepartmentPage = async () => {
         
         <select name="manager" id="manager">
           {managers.map((manager) => (
-            <option value={manager.id}>{manager.name}</option>
+            <option value={manager.name}>{manager.name}</option>
           ))}
         </select>
 

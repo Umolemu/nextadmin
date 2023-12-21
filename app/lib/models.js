@@ -47,7 +47,7 @@ const departmentSchema = new mongoose.Schema({
         required: true,
     },
     status: {
-        type: Boolean,
+        type: String,
         default: false,
     },
     manager: {

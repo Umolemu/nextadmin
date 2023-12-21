@@ -76,3 +76,14 @@ export const fetchUsersOnce = async () => {
         throw new Error("Failed to fetch users");
     }
 }
+
+export const fetchDepartmentsOnce = async () => {
+    try {
+        connectToDb();
+        const departments = await Department.find({})
+        return departments;
+    } catch (error) {
+        console.log(error);
+        throw new Error("Failed to fetch Departments!");
+    }
+}
