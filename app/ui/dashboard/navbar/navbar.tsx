@@ -9,8 +9,8 @@ import {
 } from "react-icons/md";
 
 const Navbar = () => {
-
-  const pathname = usePathname();
+  // import pathname so that we can addd it to the nav bar on top
+  const pathname: string = usePathname();
 
   return (
     <div className={styles.container}>

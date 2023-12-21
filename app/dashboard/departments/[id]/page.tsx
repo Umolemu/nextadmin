@@ -2,13 +2,16 @@ import styles from '../../../ui/dashboard/departments/singleDepartment/singleDep
 import {updateDepartment} from '../../../lib/actions'
 import { fetchDepartment } from '../../../lib/data'
 import { fetchManagers } from "../../../lib/data";
+import { Users, Departments } from "../../../lib/types";
 
 const SingleDepartmentPage = async ({params}) => {
-    const managers = await fetchManagers();
+    //import managers to show in the select box
+    const managers: Users[] = await fetchManagers();
     managers.push({id: 'None', name: "None"});
-
+    
+    //On edit get the current department being edited
     const { id } = params
-    const department = await fetchDepartment(id)
+    const department: Departments = await fetchDepartment(id)
 
   return (
     <div className={styles.container}>
@@ -20,8 +23,8 @@ const SingleDepartmentPage = async ({params}) => {
 
                 <label>Status</label>
                 <select name="status" id="status">
-                    <option value={true}>Active</option>
-                    <option value={false}>Inactive</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
                 </select>
 
                 <label>Manager</label>

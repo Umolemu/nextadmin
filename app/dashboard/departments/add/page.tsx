@@ -1,9 +1,11 @@
 import styles from "../../../ui/dashboard/departments/addDepartment/addDepartment.module.css";
 import { addDepartment } from '../../../lib/actions';
 import { fetchManagers } from "../../../lib/data";
+import { Users } from "../../../lib/types";
 
 const AddDepartmentPage = async () => {
-  const managers = await fetchManagers();
+  //import managers to show in the select box
+  const managers: Users[] = await fetchManagers();
   managers.push({id: 'None', name: "None"});
 
   return (
@@ -22,8 +24,8 @@ const AddDepartmentPage = async () => {
             <option value="" disabled selected hidden>
              Status
             </option>
-          <option value="yes">Active</option>
-          <option value="no">Inactive</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
         </select>
 
           <button type="submit">Submit</button>

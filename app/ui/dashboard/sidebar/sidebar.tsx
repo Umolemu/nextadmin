@@ -8,8 +8,9 @@ import {
 import MenuLink from './menuLink/menuLink';
 import Image from "next/image";
 import { auth, signOut } from "../../../auth";
+import { MenuItem } from "../../../lib/types";
 
-const menuItems = [
+const menuItems: MenuItem[] = [
   {
     title: "Pages",
     list: [
@@ -33,10 +34,11 @@ const menuItems = [
 ];
 
 const Sidebar = async ()  => {
-  const {user} = await auth();
   
-  var role;
-
+  const {user}: any = await auth();
+  
+  var role: string;
+  //display user role
   if(user.isAdmin === "Yes"){
     role = "Administrator"
   } else if (user.isManager==="Yes"){

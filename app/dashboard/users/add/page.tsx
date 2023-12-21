@@ -1,9 +1,11 @@
 import styles from "../../../ui/dashboard/users/addUser/addUser.module.css";
 import { addUser } from '../../../lib/actions';
 import { fetchManagers } from "../../../lib/data";
+import { User, Users } from '../../../lib/types';
 
 const AddUserPage = async () => {
-  const managers = await fetchManagers();
+  const managers: Users[] = await fetchManagers();
+
   managers.push({id: 'None', name: "None"});
   return (
     <div className={styles.container}>

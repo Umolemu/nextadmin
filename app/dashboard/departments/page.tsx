@@ -5,25 +5,29 @@ import Link from "next/link"
 import { fetchDepartments } from '../../lib/data';
 import { deleteDepartment } from "../../lib/actions";
 import { auth } from "../../auth"
-import { fetchUser, fetchDepartmentsOnce } from "../../lib/data";
+import { fetchUser } from "../../lib/data";
+import  { Departments } from "../../lib/types"
 
 const DepartmentsPage = async ({searchParams}) => {
   
-  const q = searchParams?.q || "";
-  const page = searchParams?.page || 1;
-  let {count, departments} = await fetchDepartments(q, page);
+  //Filter departments by search params
+  const q: string = searchParams?.q || "";
+  const page: number = searchParams?.page || 1;
+  let {count, departments}: {count: number, departments: Departments[]}  = await fetchDepartments(q, page);
 
-  const {user} = await auth();
-  let hide = false;
+  const {user}: any = await auth();
   
-  //if user 
+  //if manager or user hide create user and set isManager
+  let hide: boolean = false;
+  
+  //if logged in as user only show departments that belong to that user
   if(user.isAdmin === "No" && user.isManager === "No") {
     let currentUser = await fetchUser(user.id);
     departments = departments.filter((e) => e.manager === currentUser.manager)
     hide = true;
   }
 
-  //if manager
+  //if logged in as manager only show departments that belong to the manager
   if(user.isAdmin === "No" && user.isManager === "Yes") {
     departments = departments.filter((e) => e.manager === user.name)
     hide = true;

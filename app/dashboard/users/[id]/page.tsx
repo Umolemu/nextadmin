@@ -4,17 +4,21 @@ import { fetchUser } from '../../../lib/data'
 import { updateUser } from '../../../lib/actions'
 import { fetchManagers } from "../../../lib/data";
 import { auth } from "../../../auth"
+import { User, Users } from '../../../lib/types';
 
 const SingleUserPage = async ({ params }) => {
     
-    const managers = await fetchManagers();
+    const managers: Users[] = await fetchManagers();
+    
     managers.push({id: 'None', name: "None"});
+    
+    /**Fetch Users by parameters in url*/
     const { id } = params
     const userToEdit = await fetchUser(id)
 
     var hide = true;
     /*Only show relevant Users*/
-    const { user } = await auth();
+    const { user }: any = await auth();
     
     //if User
     if(user.isAdmin === "Yes") {
@@ -53,16 +57,16 @@ const SingleUserPage = async ({ params }) => {
                     <>
                         <label>is Manager?</label>
                         <select name="isManager" id="isManager">
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
+                            <option >Yes</option>
+                            <option >No</option>
                         </select>
                     </>
                 )}
 
                 <label>Status</label>
                 <select name="status" id="status">
-                    <option value={true}>Active</option>
-                    <option value={false}>Inactive</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
                 </select>
 
 

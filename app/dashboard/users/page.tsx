@@ -6,16 +6,17 @@ import { fetchUsers } from '../../lib/data';
 import { deleteUser } from "../../lib/actions";
 import { auth } from "../../auth"
 import { fetchUser, fetchUsersOnce } from "../../lib/data";
+import  { User, Users } from '../../lib/types';
 
 const UsersPage = async ( {searchParams} ) => {
 
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  var {count, users} = await fetchUsers(q, page);
+  var {count, users}: {count: number, users: Users[]} = await fetchUsers(q, page);
   
   var hide = false;
   /*Only show relevant Users*/
-  const {user} = await auth();
+  const {user}: any = await auth();
   
   //if User
   if(user.isAdmin === "No" && user.isManager === "No") {
